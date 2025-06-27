@@ -1,38 +1,81 @@
-# sv
+# Chicks Gold Front-End Challenge
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Overview
 
-## Creating a project
+This project is a front-end mock application built for the Chicks Gold Software Engineering Challenge. The goal is to recreate the provided design using sveltekit.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npx sv create
+- **Framework:** SvelteKit with TypeScript
+- **Styling:** Pure CSS (no frameworks as asked)
+- **Responsive:** It adapts to mobile, tablet, and desktop screens
+- **Mock Data:** Uses [JSON Server](https://github.com/typicode/json-server) to simulate API responses
 
-# create a new project in my-app
-npx sv create my-app
-```
+## Getting Started
 
-## Developing
+### Prerequisites
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [PNPM](https://pnpm.io/) (Should be installed globally `npm install -g pnpm`)
 
-```bash
-npm run dev
+### Installation
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/sheyzi/chicks-fe-challenge.git
+   cd chicks-fe-challenge
+   ```
 
-## Building
+2. **Install dependencies:**
+   ```sh
+   pnpm install
+   ```
 
-To create a production version of your app:
+3. **Start the mock API:**
+   ```sh
+   pnpm run server
+   ```
+    This will start JSON Server on port 8000. You can change the port in `package.json` if needed.
 
-```bash
-npm run build
-```
+4. **Set up the environment:**
+   Create a `.env` file in the root directory and add the following line:
+   ```env
+   PUBLIC_API_BASE_URL=http://localhost:8000
+   ```
 
-You can preview the production build with `npm run preview`.
+   This points the app to the mock API.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+4. **Run the development server:**
+   ```sh
+   pnpm run dev
+   ```
+
+5. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+
+## Design Choices
+
+- **Why JSON Server?**  
+  To simulate realistic data fetching and asynchronous UI updates, I used JSON Server as a local mock API. This keeps the code modular and closer to a real-world setup, while still using only local resources.
+- **Responsiveness:**  
+  All layouts and components use CSS media queries and flexible units to ensure a smooth experience on any device.
+- **Themeability:**  
+  The design is kept simple and clean, allowing for easy customization of colors and styles in the CSS files.
+- **Accessibility:**  
+  Interactive elements are keyboard accessible and use semantic HTML where possible.
+
+## Customization
+
+- You can replace images in the `/static` folder with your own game assets.
+- To change the mock data, edit `db.json`.
+
+## Live Demo
+
+My Deployed Link Will be available soon.
+
+## Scripts
+
+- `pnpm run server` — Start the JSON Server mock API
+- `pnpm run dev` — Start the development server
+- `pnpm run build` — Build for production
+- `pnpm run preview` — Preview the production build
