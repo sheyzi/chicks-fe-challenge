@@ -79,3 +79,4 @@ My Deployed Link Will be available soon.
 - `pnpm run dev` — Start the development server
 - `pnpm run build` — Build for production
 - `pnpm run preview` — Preview the production build
+- `pnpm run start` — Start the production server (after building)
