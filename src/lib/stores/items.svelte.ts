@@ -28,6 +28,7 @@ class ItemStore {
 	loaded = $state<boolean>(false);
 
 	private async loadItems() {
+		this.loading = true;
 		const params = new URLSearchParams({
 			_page: this.pagination.currentPage.toString(),
 			_limit: this.pagination.itemsPerPage.toString()
@@ -94,6 +95,7 @@ class ItemStore {
 			acc[item.id] = item;
 			return acc;
 		}, {});
+		this.loading = false;
 	}
 
 	load = async () => {
