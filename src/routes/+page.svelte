@@ -109,6 +109,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Chicks Frontend Challenge</title>
+</svelte:head>
+
 <main class="main-content">
 	<div class="overlay"></div>
 	<div class="bg_container"></div>
