@@ -67,7 +67,7 @@
 		</div>
 	</div>
 	<div class="card-image-container">
-		<img src={item.imageUrl} class="card-image" alt={item.name} />
+		<img src={item.imageUrl} class="card-image" alt={item.name} loading="lazy" />
 	</div>
 	<div class="item-details">
 		<h2 class="item-name">{item.name}</h2>
