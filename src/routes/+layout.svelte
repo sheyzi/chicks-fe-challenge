@@ -33,5 +33,6 @@
 
 	.content {
 		flex: 1;
+		padding-top: 60px;
 	}
 </style>

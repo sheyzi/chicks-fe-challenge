@@ -111,7 +111,8 @@
 			<div class="cart-item">
 				<a href="/contact">
 					<iconify-icon icon="mdi:cart" height="16" width="16"></iconify-icon>
-					<span>CART ({cartStore.totalItems})</span>
+					<span class="cart-text">CART</span>
+					<span class="cart-number">({cartStore.totalItems})</span>
 				</a>
 			</div>
 			<button class="signin-button">
@@ -120,10 +121,18 @@
 			</button>
 		</div>
 
-		<button class="mobile-menu-toggle" onclick={toggleMobileMenu} aria-label="Toggle menu">
-			<iconify-icon icon={mobileMenuOpen ? 'mdi:close' : 'mdi:menu'} height="24" width="24"
-			></iconify-icon>
-		</button>
+		<div class="mobile-right">
+			<div class="cart-item mobile">
+				<a href="/contact">
+					<iconify-icon icon="mdi:cart" height="20" width="20"></iconify-icon>
+					<span class="cart-count">({cartStore.totalItems})</span>
+				</a>
+			</div>
+			<button class="mobile-menu-toggle" onclick={toggleMobileMenu} aria-label="Toggle menu">
+				<iconify-icon icon={mobileMenuOpen ? 'mdi:close' : 'mdi:menu'} height="24" width="24"
+				></iconify-icon>
+			</button>
+		</div>
 	</div>
 </div>
 
@@ -237,13 +246,6 @@
 				</li>
 
 				<li class="mobile-menu-item">
-					<a href="/contact" class="mobile-link" onclick={closeMobileMenu}>
-						<iconify-icon icon="mdi:cart" height="16" width="16"></iconify-icon>
-						<span>CART ({cartStore.totalItems})</span>
-					</a>
-				</li>
-
-				<li class="mobile-menu-item">
 					<button class="signin-button mobile" onclick={closeMobileMenu}>
 						<span>Sign In</span>
 						<iconify-icon icon="mdi:account" height="16" width="16"></iconify-icon>
@@ -262,7 +264,12 @@
 		padding: var(--spacing-md) var(--spacing-xl);
 		background-color: var(--background-color);
 		box-shadow: var(--shadow-sm);
-		position: relative;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		z-index: 1000;
 		border-bottom: 1px solid var(--border-color);
 	}
 
@@ -338,6 +345,30 @@
 		border-radius: var(--radius-sm);
 	}
 
+	.mobile-right {
+		display: none;
+		align-items: center;
+		gap: var(--spacing-md);
+	}
+
+	.cart-item.mobile {
+		display: flex;
+		align-items: center;
+	}
+
+	.cart-item.mobile a {
+		font-weight: var(--font-weight-medium);
+		font-size: var(--font-size-sm);
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-xs);
+		color: var(--text-color);
+	}
+
+	.cart-count {
+		font-size: var(--font-size-xs);
+	}
+
 	.mobile-menu-overlay {
 		position: fixed;
 		top: 0;
@@ -393,27 +424,6 @@
 		border-bottom: none;
 	}
 
-	.mobile-link {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-sm);
-		padding: var(--spacing-md) var(--spacing-xl);
-		font-weight: var(--font-weight-medium);
-		font-size: var(--font-size-sm);
-		text-transform: uppercase;
-		transition: background-color var(--transition-normal);
-	}
-
-	.mobile-link:hover {
-		background-color: rgba(255, 255, 255, 0.1);
-	}
-
-	@media (hover: none) and (pointer: coarse) {
-		.mobile-link:hover {
-			background-color: transparent;
-		}
-	}
-
 	.signin-button.mobile {
 		width: calc(100% - 4rem);
 		margin: var(--spacing-md) var(--spacing-xl);
@@ -452,6 +462,10 @@
 			display: none;
 		}
 
+		.mobile-right {
+			display: flex;
+		}
+
 		.mobile-menu-toggle {
 			display: block;
 		}
@@ -472,10 +486,6 @@
 	}
 
 	@media (max-width: 1100px) and (min-width: 769px) {
-		/* .navbar {
-			padding: var(--spacing-xs) var(--spacing-sm);
-		} */
-
 		.logo {
 			width: 100px;
 		}
@@ -503,7 +513,7 @@
 	}
 
 	@media (max-width: 1024px) and (min-width: 769px) {
-		.cart-item span,
+		.cart-text,
 		.signin-button span {
 			display: none;
 		}
