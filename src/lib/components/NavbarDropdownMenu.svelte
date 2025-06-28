@@ -28,7 +28,6 @@
 	let isClicked = $state(false);
 	let closeTimeout: number | null = $state(null);
 	let dropdownElement: HTMLElement | null = $state(null);
-	let isMobile = $state(false);
 
 	function handleClick() {
 		if (closeTimeout) {
@@ -58,22 +57,14 @@
 		}
 	}
 
-	function checkIfMobile() {
-		isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-	}
-
 	function isRecord(obj: any): obj is Record<string, NavigationItem[]> {
 		return obj && typeof obj === 'object' && !Array.isArray(obj);
 	}
 
 	onMount(() => {
-		checkIfMobile();
 		document.addEventListener('click', handleClickOutside);
-		window.addEventListener('resize', checkIfMobile);
-
 		return () => {
 			document.removeEventListener('click', handleClickOutside);
-			window.removeEventListener('resize', checkIfMobile);
 			if (closeTimeout) {
 				clearTimeout(closeTimeout);
 			}

@@ -6,6 +6,8 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import { browser } from '$app/environment';
 	import cartStore from '$lib/stores/cart.svelte';
+	import { onMount, untrack } from 'svelte';
+	import responsiveStore from '../lib/stores/responsive.svelte';
 
 	const { children } = $props();
 
@@ -13,6 +15,17 @@
 		if (browser && !cartStore.loaded) {
 			cartStore.load();
 		}
+	});
+
+	onMount(() => {
+		responsiveStore.checkIfMobile();
+		if (browser) {
+			window.addEventListener('resize', responsiveStore.checkIfMobile);
+		}
+
+		return () => {
+			window.removeEventListener('resize', responsiveStore.checkIfMobile);
+		};
 	});
 </script>
 

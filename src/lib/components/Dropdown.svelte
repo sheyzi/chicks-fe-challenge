@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { isMobile } from '../utils/responsive';
+	import responsiveStore from '../stores/responsive.svelte';
 
 	interface DropdownOption {
 		value: string;
@@ -86,6 +86,9 @@
 			? options.filter((option) => option.label.toLowerCase().includes(searchTerm.toLowerCase()))
 			: options
 	);
+	let maxWidth = $derived(
+		responsiveStore.isMobile && mergedTheme.fullWidthOnMobile ? '100%' : mergedTheme.width
+	);
 
 	function toggleDropdown() {
 		if (disabled) return;
@@ -154,10 +157,7 @@
 	class:disabled
 	class:open={isOpen}
 	bind:this={dropdownElement}
-	style="--bg-color: {mergedTheme.backgroundColor}; --text-color: {mergedTheme.textColor}; --bg-color-hover: {mergedTheme.backgroundColorHover}; --text-color-hover: {mergedTheme.textColorHover}; --item-bg-color: {mergedTheme.itemBackgroundColor}; --item-text-color: {mergedTheme.itemTextColor}; --active-item-bg-color: {mergedTheme.activeItemBackgroundColor}; --active-item-text-color: {mergedTheme.activeItemTextColor}; max-width: {isMobile() &&
-	mergedTheme.fullWidthOnMobile
-		? '100%'
-		: mergedTheme.width};"
+	style="--bg-color: {mergedTheme.backgroundColor}; --text-color: {mergedTheme.textColor}; --bg-color-hover: {mergedTheme.backgroundColorHover}; --text-color-hover: {mergedTheme.textColorHover}; --item-bg-color: {mergedTheme.itemBackgroundColor}; --item-text-color: {mergedTheme.itemTextColor}; --active-item-bg-color: {mergedTheme.activeItemBackgroundColor}; --active-item-text-color: {mergedTheme.activeItemTextColor}; max-width: {maxWidth};"
 >
 	<button
 		type="button"
