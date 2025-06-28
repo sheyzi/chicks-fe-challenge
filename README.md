@@ -71,7 +71,7 @@ This project is a front-end mock application built for the Chicks Gold Software 
 
 ## Live Demo
 
-My Deployed Link Will be available soon.
+[Live Demo Link](https://chicks-fe-challenge.netlify.app/)
 
 ## Scripts
 

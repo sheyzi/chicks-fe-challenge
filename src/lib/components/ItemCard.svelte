@@ -216,7 +216,8 @@
 		justify-content: center;
 		align-items: center;
 		margin-bottom: var(--spacing-md);
-		background-color: var(--surface-color);
+		background: url('/assets/frame.png') no-repeat center center / cover;
+		padding: var(--spacing-sm);
 		border-radius: var(--radius-sm);
 		overflow: hidden;
 		box-shadow: var(--shadow-sm);
