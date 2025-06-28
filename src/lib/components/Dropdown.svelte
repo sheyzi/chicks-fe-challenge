@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { isMobile } from '../utils/responsive';
 
 	interface DropdownOption {
 		value: string;
@@ -21,6 +22,7 @@
 		iconColor?: string;
 
 		width?: string;
+		fullWidthOnMobile?: boolean;
 	}
 
 	const defaultTheme: Theme = {
@@ -37,7 +39,8 @@
 
 		iconColor: 'var(--text-color)',
 
-		width: '250px'
+		width: '250px',
+		fullWidthOnMobile: true
 	};
 
 	let {
@@ -151,7 +154,10 @@
 	class:disabled
 	class:open={isOpen}
 	bind:this={dropdownElement}
-	style="--bg-color: {mergedTheme.backgroundColor}; --text-color: {mergedTheme.textColor}; --bg-color-hover: {mergedTheme.backgroundColorHover}; --text-color-hover: {mergedTheme.textColorHover}; --item-bg-color: {mergedTheme.itemBackgroundColor}; --item-text-color: {mergedTheme.itemTextColor}; --active-item-bg-color: {mergedTheme.activeItemBackgroundColor}; --active-item-text-color: {mergedTheme.activeItemTextColor}; max-width: {mergedTheme.width};"
+	style="--bg-color: {mergedTheme.backgroundColor}; --text-color: {mergedTheme.textColor}; --bg-color-hover: {mergedTheme.backgroundColorHover}; --text-color-hover: {mergedTheme.textColorHover}; --item-bg-color: {mergedTheme.itemBackgroundColor}; --item-text-color: {mergedTheme.itemTextColor}; --active-item-bg-color: {mergedTheme.activeItemBackgroundColor}; --active-item-text-color: {mergedTheme.activeItemTextColor}; max-width: {isMobile() &&
+	mergedTheme.fullWidthOnMobile
+		? '100%'
+		: mergedTheme.width};"
 >
 	<button
 		type="button"

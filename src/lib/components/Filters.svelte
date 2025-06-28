@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CustomDropdown from './Dropdown.svelte';
+	import Dropdown from './Dropdown.svelte';
 
 	interface FilterOptions {
 		gameOptions: Array<{ value: string; label: string }>;
@@ -39,7 +39,7 @@
 </script>
 
 <div class="filters">
-	<CustomDropdown
+	<Dropdown
 		bind:value={values.selectedGame}
 		options={options.gameOptions}
 		placeholder="Select a game"
@@ -74,7 +74,7 @@
 	</div>
 
 	<div class="filters-group">
-		<CustomDropdown
+		<Dropdown
 			bind:value={values.selectedPrice}
 			options={options.priceOptions}
 			placeholder="Price"
@@ -90,7 +90,7 @@
 			}}
 		/>
 
-		<CustomDropdown
+		<Dropdown
 			bind:value={values.selectedItemType}
 			options={options.itemTypes}
 			placeholder="Item Type"
